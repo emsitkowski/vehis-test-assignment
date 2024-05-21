@@ -1,6 +1,6 @@
 <template>
   <form class="flex flex-col gap-8" @submit.prevent="onSubmit" novalidate>
-    <div class="flex flex-col sm:flex-row [&>*]:basis-1/2 gap-6">
+    <div class="grid grid-cols-2 gap-6">
       <!-- Net value -->
       <FormField v-slot="{ componentField }" name="netValue">
         <FormItem>
@@ -19,6 +19,7 @@
           <FormMessage />
         </FormItem>
       </FormField>
+
       <!-- Gross value -->
       <FormField v-slot="{ componentField }" name="grossValue">
         <FormItem>
@@ -37,6 +38,27 @@
           <FormMessage />
         </FormItem>
       </FormField>
+
+      <!-- Car state -->
+      <FormField v-slot="{ componentField }" name="state">
+        <FormItem>
+          <FormLabel>Stan samochodu</FormLabel>
+          <Select v-bind="componentField">
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder="Wybierz stan" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="new"> Nowy </SelectItem>
+                <SelectItem value="used"> Używany </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <FormMessage />
+        </FormItem>
+      </FormField>
     </div>
 
     <!-- Submit -->
@@ -50,6 +72,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { calculateGrossFromNet, calculateNetFromGross } from "~/utils/currency";
 
@@ -82,6 +105,7 @@ const formSchema = toTypedSchema(
       .multipleOf(0.01, { message: "Wpisz poprawną wartość" })
       .positive()
       .safe(),
+    state: z.string({ message: "Wybierz stan samochodu" }),
   })
 );
 
@@ -112,6 +136,7 @@ const handleCarValues = (e: Event) => {
   }
 };
 
+/* Handle form submit */
 const onSubmit = handleSubmit((values) => {
   console.log("Form submitted with values: ", values);
 });
