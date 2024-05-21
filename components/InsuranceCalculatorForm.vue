@@ -1,6 +1,6 @@
 <template>
   <form class="flex flex-col gap-8" @submit.prevent="onSubmit" novalidate>
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <!-- Net value -->
       <FormField v-slot="{ componentField }" name="netValue">
         <FormItem>
