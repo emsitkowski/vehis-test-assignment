@@ -59,6 +59,26 @@
           <FormMessage />
         </FormItem>
       </FormField>
+
+      <!-- Car production year -->
+      <FormField v-slot="{ componentField }" name="year">
+        <FormItem>
+          <FormLabel>Rok produkcji</FormLabel>
+          <Select v-bind="componentField" v-model="formState.year" :disabled="!formState.state">
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder="Wybierz rok" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem v-for="year in productionYears" :value="year.toString()"> {{ year }} </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <FormMessage />
+        </FormItem>
+      </FormField>
     </div>
 
     <!-- Submit -->
@@ -81,6 +101,7 @@ interface Car {
   netValue: undefined | number;
   grossValue: undefined | number;
   state: undefined | string;
+  year: undefined | string;
 }
 
 /* Define ref for keeping form values */
@@ -88,6 +109,7 @@ const formState = ref<Car>({
   netValue: undefined,
   grossValue: undefined,
   state: undefined,
+  year: undefined,
 });
 
 /* Define form schema */
@@ -108,6 +130,7 @@ const formSchema = toTypedSchema(
       .positive()
       .safe(),
     state: z.string({ message: "Wybierz stan samochodu" }),
+    year: z.string({ message: "Wybierz rok produkcji" }),
   })
 );
 
@@ -137,6 +160,27 @@ const handleCarValues = (e: Event) => {
     setFieldValue("netValue", computedNetValue);
   }
 };
+
+/* Compute production years for new and used cars */
+const productionYears = computed(() => {
+  const years = [];
+  const currentYear = new Date().getFullYear();
+
+  // reset production year field after computing years
+  formState.value.year = undefined;
+
+  // populate years array with 5 recent years
+  for (let i = currentYear; i > currentYear - 5; i--) {
+    years.push(i);
+  }
+
+  // narrow down years depending on car state (new cars are made in 2 recent years)
+  if (formState.value.state === "new") {
+    return years.slice(0, 2);
+  } else if (formState.value.state === "used") {
+    return years.slice(2, 5);
+  }
+});
 
 /* Handle form submit */
 const onSubmit = handleSubmit((values) => {
