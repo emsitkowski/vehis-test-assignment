@@ -12,7 +12,7 @@
               step="0.1"
               min="1"
               v-bind="componentField"
-              v-model="carValue.net"
+              v-model="formState.netValue"
               @change="handleCarValues"
             />
           </FormControl>
@@ -31,7 +31,7 @@
               step="0.1"
               min="1.23"
               v-bind="componentField"
-              v-model="carValue.gross"
+              v-model="formState.grossValue"
               @change="handleCarValues"
             />
           </FormControl>
@@ -43,7 +43,7 @@
       <FormField v-slot="{ componentField }" name="state">
         <FormItem>
           <FormLabel>Stan samochodu</FormLabel>
-          <Select v-bind="componentField">
+          <Select v-bind="componentField" v-model="formState.state">
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder="Wybierz stan" />
@@ -77,15 +77,17 @@ import { Input } from "@/components/ui/input";
 import { calculateGrossFromNet, calculateNetFromGross } from "~/utils/currency";
 
 /* Define car values interface */
-interface CarValues {
-  net: undefined | number;
-  gross: undefined | number;
+interface Car {
+  netValue: undefined | number;
+  grossValue: undefined | number;
+  state: undefined | string;
 }
 
-/* Define refs for keeping car values */
-const carValue = ref<CarValues>({
-  net: undefined,
-  gross: undefined,
+/* Define ref for keeping form values */
+const formState = ref<Car>({
+  netValue: undefined,
+  grossValue: undefined,
+  state: undefined,
 });
 
 /* Define form schema */
@@ -120,16 +122,16 @@ const handleCarValues = (e: Event) => {
   const targetName = target.getAttribute("name");
 
   // check which form field is updated (net or gross value field) and update their values interchangeably
-  if (targetName === "netValue" && carValue.value.net) {
-    const computedGrossValue = calculateGrossFromNet(carValue.value.net);
-    carValue.value.gross = computedGrossValue !== 0 ? computedGrossValue : undefined;
+  if (targetName === "netValue" && formState.value.netValue) {
+    const computedGrossValue = calculateGrossFromNet(formState.value.netValue);
+    formState.value.grossValue = computedGrossValue !== 0 ? computedGrossValue : undefined;
 
     // send computed value to vee-validate components, to make it validate the correct values
     setFieldValue("grossValue", computedGrossValue);
-  } else if (targetName === "grossValue" && carValue.value.gross) {
+  } else if (targetName === "grossValue" && formState.value.grossValue) {
     // calculate net value from gross value
-    const computedNetValue = calculateNetFromGross(carValue.value.gross);
-    carValue.value.net = computedNetValue !== 0 ? computedNetValue : undefined;
+    const computedNetValue = calculateNetFromGross(formState.value.grossValue);
+    formState.value.netValue = computedNetValue !== 0 ? computedNetValue : undefined;
 
     // send computed value to vee-validate components, to make it validate the correct values
     setFieldValue("netValue", computedNetValue);
