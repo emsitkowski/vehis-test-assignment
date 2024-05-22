@@ -72,7 +72,9 @@
             </FormControl>
             <SelectContent>
               <SelectGroup>
-                <SelectItem v-for="year in productionYears" :value="year.toString()"> {{ year }} </SelectItem>
+                <SelectItem v-for="year in productionYears" :value="year.toString()" :key="year">
+                  {{ year }}
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
