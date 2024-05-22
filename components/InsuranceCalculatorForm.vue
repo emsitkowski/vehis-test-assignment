@@ -43,7 +43,7 @@
       <FormField v-slot="{ componentField }" name="state">
         <FormItem>
           <FormLabel>Stan samochodu</FormLabel>
-          <Select v-bind="componentField" v-model="formState.state">
+          <Select v-bind="componentField" v-model="formState.state" @update:model-value="handleStateFieldChange">
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder="Wybierz stan" />
@@ -184,9 +184,6 @@ const productionYears = computed(() => {
   const years = [];
   const currentYear = new Date().getFullYear();
 
-  // reset production year field after computing years
-  formState.value.year = undefined;
-
   // populate years array with 5 recent years
   for (let i = currentYear; i > currentYear - 5; i--) {
     years.push(i);
@@ -199,6 +196,14 @@ const productionYears = computed(() => {
     return years.slice(2, 5);
   }
 });
+
+const handleStateFieldChange = () => {
+  // reset production year field after car state field change
+  if (formState.value.year !== undefined) {
+    formState.value.year = undefined;
+    setFieldValue("year", undefined);
+  }
+};
 
 /* Handle form submit */
 const onSubmit = handleSubmit((values) => {
