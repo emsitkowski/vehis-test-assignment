@@ -17,8 +17,8 @@
     </CardHeader>
     <CardContent>
       <!-- Insurance calculator content -->
-      <InsuranceCalculatorForm v-if="!useInsuranceStore().isCalculationSuccessful" />
-      <InsuranceResult v-else />
+      <InsuranceCalcForm v-if="!useInsuranceStore().isCalculationSuccessful" />
+      <InsuranceCalcResult v-else />
     </CardContent>
   </Card>
 </template>

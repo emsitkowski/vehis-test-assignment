@@ -24,9 +24,9 @@
     <!-- Action buttons -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <!-- Installments payment modal -->
-      <InsurancePaymentModal>
+      <InsuranceCalcPaymentModal>
         <Button class="w-full"> Oblicz wysokość raty </Button>
-      </InsurancePaymentModal>
+      </InsuranceCalcPaymentModal>
 
       <!-- Calculate again for different car -->
       <Button class="w-full gap-2" variant="outline" @click="handleRepeat">

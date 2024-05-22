@@ -5,7 +5,7 @@
 
     <!-- Calculator -->
     <div class="w-full max-w-lg mx-auto">
-      <InsuranceCalculator />
+      <InsuranceCalc />
     </div>
   </div>
 
