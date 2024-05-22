@@ -27,8 +27,13 @@
       </div>
 
       <!-- Action buttons -->
-      <div class="flex flex-col sm:flex-row gap-4">
-        <Button class="w-full" @click="handleInstallmentsPayment"> Oblicz wysokość raty </Button>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Installments payment modal -->
+        <InsurancePaymentModal>
+          <Button class="w-full"> Oblicz wysokość raty </Button>
+        </InsurancePaymentModal>
+
+        <!-- Calculate again for different car -->
         <Button class="w-full gap-2" variant="outline" @click="handleRepeat">
           <img class="w-4 h-4" src="@/assets/img/ico-repeat.svg" alt="repeat" />
           Oblicz dla innego pojazdu
@@ -45,10 +50,6 @@ import { useInsuranceStore } from "~/store";
 
 const handleRepeat = () => {
   useInsuranceStore().resetStore();
-};
-
-const handleInstallmentsPayment = () => {
-  console.log("Calculating payment...");
 };
 </script>
 
