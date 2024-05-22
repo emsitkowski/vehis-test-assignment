@@ -1,6 +1,14 @@
 <template>
-  <form class="flex flex-col gap-8" @submit.prevent="onSubmit" novalidate>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  <form
+    class="flex flex-col gap-8"
+    :class="{ 'cursor-not-allowed': useInsuranceStore().isFormSubmitting }"
+    @submit.prevent="onSubmit"
+    novalidate
+  >
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+      :class="{ 'opacity-40 pointer-events-none': useInsuranceStore().isFormSubmitting }"
+    >
       <!-- Net value -->
       <FormField v-slot="{ componentField }" name="netValue">
         <FormItem>
@@ -98,7 +106,11 @@
     </div>
 
     <!-- Submit -->
-    <Button class="w-full" type="submit">Oblicz roczną składkę OC/AC</Button>
+    <Button v-if="useInsuranceStore().isFormSubmitting === true" class="w-full" type="submit" disabled>
+      <Loader2 class="w-4 h-4 mr-2 animate-spin" />
+      Trwa obliczanie składki AC/OC...
+    </Button>
+    <Button v-else class="w-full" type="submit"> Oblicz roczną składkę OC/AC </Button>
   </form>
 </template>
 
@@ -107,6 +119,8 @@ import * as z from "zod";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import { calculateGrossFromNet, calculateNetFromGross } from "~/utils/currency";
+import { useInsuranceStore } from "~/store";
+import { Loader2 } from "lucide-vue-next";
 
 /* Define car values interface */
 interface Car {
@@ -204,6 +218,11 @@ const handleStateFieldChange = () => {
 
 /* Handle form submit */
 const onSubmit = handleSubmit((values) => {
+  useInsuranceStore().toggleLoading(true);
   console.log("Form submitted with values: ", values);
+
+  setTimeout(() => {
+    useInsuranceStore().toggleLoading(false);
+  }, 2000);
 });
 </script>
