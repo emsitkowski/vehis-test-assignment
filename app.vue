@@ -5,8 +5,7 @@
 
     <!-- Calculator -->
     <div class="w-full max-w-lg mx-auto">
-      <InsuranceCalculator v-if="!useInsuranceStore().isCalculationSuccess" />
-      <InsuranceResult v-else />
+      <InsuranceCalculator />
     </div>
   </div>
 
@@ -14,6 +13,5 @@
 </template>
 
 <script setup lang="ts">
-import { useInsuranceStore } from "~/store";
 import Toaster from "@/components/ui/toast/Toaster.vue";
 </script>
