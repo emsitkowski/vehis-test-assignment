@@ -79,6 +79,20 @@
           <FormMessage />
         </FormItem>
       </FormField>
+
+      <!-- Additional services -->
+      <FormField v-slot="{ handleChange }" name="drivePlus">
+        <FormItem>
+          <FormLabel> Dodatkowe opcje </FormLabel>
+
+          <FormControl>
+            <div class="flex items-center gap-2">
+              <Switch @update:checked="handleChange" v-model="formState.drivePlus" :default-checked="true" />
+              <Label>Pakiet Drive+</Label>
+            </div>
+          </FormControl>
+        </FormItem>
+      </FormField>
     </div>
 
     <!-- Submit -->
@@ -94,6 +108,7 @@ import { Button } from "@/components/ui/button";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import { calculateGrossFromNet, calculateNetFromGross } from "~/utils/currency";
 
 /* Define car values interface */
@@ -102,6 +117,7 @@ interface Car {
   grossValue: undefined | number;
   state: undefined | string;
   year: undefined | string;
+  drivePlus: boolean;
 }
 
 /* Define ref for keeping form values */
@@ -110,6 +126,7 @@ const formState = ref<Car>({
   grossValue: undefined,
   state: undefined,
   year: undefined,
+  drivePlus: true, // set default value to true
 });
 
 /* Define form schema */
@@ -131,6 +148,7 @@ const formSchema = toTypedSchema(
       .safe(),
     state: z.string({ message: "Wybierz stan samochodu" }),
     year: z.string({ message: "Wybierz rok produkcji" }),
+    drivePlus: z.boolean().default(true),
   })
 );
 
