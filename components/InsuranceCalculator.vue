@@ -1,8 +1,8 @@
 <template>
-  <Card class="max-w-lg mx-auto">
+  <Card>
     <CardHeader>
       <!-- Card title -->
-      <CardTitle> Dane samochodu</CardTitle>
+      <CardTitle class="leading-8"> Dane samochodu</CardTitle>
 
       <!-- Card description -->
       <CardDescription>
