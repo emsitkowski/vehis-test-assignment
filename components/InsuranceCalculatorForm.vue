@@ -108,7 +108,7 @@
     <!-- Submit -->
     <Button v-if="useInsuranceStore().isFormSubmitting === true" class="w-full" type="submit" disabled>
       <Loader2 class="w-4 h-4 mr-2 animate-spin" />
-      Trwa obliczanie składki AC/OC...
+      Trwa obliczanie składki...
     </Button>
     <Button v-else class="w-full" type="submit"> Oblicz roczną składkę OC/AC </Button>
   </form>
