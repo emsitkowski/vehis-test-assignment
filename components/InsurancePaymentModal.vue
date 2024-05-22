@@ -44,7 +44,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -52,16 +51,16 @@ import {
 
 import { useInsuranceStore } from "~/store";
 
-const numberOfInstallments = ref<undefined | number>(undefined);
+const numberOfInstallments = ref<undefined | string>(undefined);
 
 /* Calculate payment installment value depending on number of payments selected */
 const paymentInstallment = computed(() => {
   let computedInstallment = 0;
 
   if (numberOfInstallments.value === "2") {
-    computedInstallment = useInsuranceStore().installmentValue * 1.02;
+    computedInstallment = Number(useInsuranceStore().installmentValue) * 1.02;
   } else if (numberOfInstallments.value === "4") {
-    computedInstallment = useInsuranceStore().installmentValue * 1.04;
+    computedInstallment = Number(useInsuranceStore().installmentValue) * 1.04;
   }
 
   return Number(computedInstallment + 200).toFixed(2);
