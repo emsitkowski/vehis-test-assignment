@@ -116,20 +116,12 @@
 
 <script setup lang="ts">
 import * as z from "zod";
+import type { Car } from "~/types/index";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import { calculateGrossFromNet, calculateNetFromGross } from "~/utils/currency";
 import { useInsuranceStore } from "~/store";
 import { Loader2 } from "lucide-vue-next";
-
-/* Define car values interface */
-interface Car {
-  netValue: undefined | number;
-  grossValue: undefined | number;
-  state: undefined | string;
-  year: undefined | string;
-  drivePlus: boolean;
-}
 
 /* Define ref for keeping form values */
 const formState = ref<Car>({
