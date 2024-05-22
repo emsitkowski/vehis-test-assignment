@@ -32,7 +32,7 @@
           <Separator />
 
           <!-- Computed payment installment value -->
-          <div class="text-2xl font-bold pt-6">Rata wyniesie: {{ paymentInstallment }} zł</div>
+          <div class="text-xl font-semibold pt-6">Rata wyniesie: {{ paymentInstallment }} zł</div>
         </div>
       </div>
     </DialogContent>

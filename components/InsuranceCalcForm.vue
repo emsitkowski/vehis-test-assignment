@@ -138,17 +138,17 @@ const formState = ref<Car>({
 const formSchema = toTypedSchema(
   z.object({
     netValue: z
-      .number({ message: "Wpisz poprawną wartość" })
+      .number({ message: "Wpisz poprawną wartość liczbową" })
       .min(1, { message: "Wartość netto musi wynosić minimum 1 zł" })
       .max(400000, { message: "Maksymalna wartość samochodu może wynosić 400000 zł netto" })
-      .multipleOf(0.01, { message: "Wpisz poprawną wartość" })
+      .multipleOf(0.01, { message: "Wpisz poprawną wartość liczbową" })
       .positive()
       .safe(),
     grossValue: z
-      .number({ message: "Wpisz poprawną wartość" })
+      .number({ message: "Wpisz poprawną wartość liczbową" })
       .min(1.23, { message: "Wartość brutto musi wynosić minimum 1.23 zł" })
       .max(492000, { message: "Maksymalna wartość samochodu może wynosić 492000 zł brutto" })
-      .multipleOf(0.01, { message: "Wpisz poprawną wartość" })
+      .multipleOf(0.01, { message: "Wpisz poprawną wartość liczbową" })
       .positive()
       .safe(),
     state: z.string({ message: "Wybierz stan samochodu" }),

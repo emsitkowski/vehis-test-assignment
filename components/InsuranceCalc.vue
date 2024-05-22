@@ -9,7 +9,7 @@
         {{
           !useInsuranceStore().isCalculationSuccessful
             ? "Dane samochodu"
-            : "Wyliczenie rocznej składki ubezpieczenia OC/AC dla pojazdu:"
+            : "Wyliczenie rocznej składki ubezpieczenia OC/AC"
         }}
       </CardTitle>
 

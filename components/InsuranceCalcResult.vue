@@ -1,13 +1,22 @@
 <template>
   <div class="space-y-6">
     <!-- Car details -->
-    <ul>
-      <li><strong>Wartość netto</strong>: {{ useInsuranceStore().carValues?.netValue }} zł</li>
-      <li><strong>Wartość brutto</strong>: {{ useInsuranceStore().carValues?.grossValue }} zł</li>
-      <li><strong>Stan</strong>: {{ useInsuranceStore().carValues?.state === "new" ? "Nowy" : "Używany" }}</li>
-      <li><strong>Rok produkcji</strong>: {{ useInsuranceStore().carValues?.year }}</li>
-      <li><strong>Pakiet Drive+</strong>: {{ useInsuranceStore().carValues?.drivePlus ? "Tak" : "Nie" }}</li>
-    </ul>
+    <div>
+      <div class="text-lg font-bold mb-2">Dane pojazdu:</div>
+      <ul>
+        <li><span class="font-semibold">Wartość netto</span>: {{ useInsuranceStore().carValues?.netValue }} zł</li>
+        <li><span class="font-semibold">Wartość brutto</span>: {{ useInsuranceStore().carValues?.grossValue }} zł</li>
+        <li>
+          <span class="font-semibold">Stan</span>:
+          {{ useInsuranceStore().carValues?.state === "new" ? "Nowy" : "Używany" }}
+        </li>
+        <li><span class="font-semibold">Rok produkcji</span>: {{ useInsuranceStore().carValues?.year }}</li>
+        <li>
+          <span class="font-semibold">Pakiet Drive+</span>:
+          {{ useInsuranceStore().carValues?.drivePlus ? "Tak" : "Nie" }}
+        </li>
+      </ul>
+    </div>
 
     <!-- Separator -->
     <Separator />
@@ -17,7 +26,7 @@
       <div class="text-4xl font-bold">{{ useInsuranceStore().installmentValue }} zł</div>
       <div class="flex items-center gap-1 opacity-50">
         <img class="w-4 h-4" src="@/assets/img/ico-info.svg" alt="info" />
-        <span class="text-sm leading-none">Istnieje możliwość rozłożenia płatności na raty</span>
+        <span class="text-sm leading-none">Możliwość rozłożenia płatności na raty</span>
       </div>
     </div>
 
