@@ -216,7 +216,11 @@ const onSubmit = handleSubmit(async (values) => {
     method: "post",
     body: values,
   })
-    .then((installment) => useInsuranceStore().saveInstallmentValue(installment))
+    .then((installment) => {
+      // save car and installment values in store
+      useInsuranceStore().saveCarValues(values);
+      useInsuranceStore().saveInstallmentValue(installment);
+    })
     .catch(() => {
       toast({
         variant: "destructive",
