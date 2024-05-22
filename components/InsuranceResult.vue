@@ -46,5 +46,3 @@ const handleRepeat = () => {
   useInsuranceStore().resetStore();
 };
 </script>
-
-<style scoped></style>

@@ -67,5 +67,3 @@ const paymentInstallment = computed(() => {
   return Number(computedInstallment + 200).toFixed(2);
 });
 </script>
-
-<style scoped></style>

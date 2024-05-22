@@ -9,6 +9,7 @@
     </div>
   </div>
 
+  <!-- App modals -->
   <Toaster />
 </template>
 

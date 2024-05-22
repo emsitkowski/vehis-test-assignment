@@ -27,5 +27,3 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useInsuranceStore } from "~/store";
 </script>
-
-<style scoped></style>
