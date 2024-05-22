@@ -8,20 +8,20 @@
         <!-- Modal header -->
         <DialogHeader>
           <DialogTitle> Oblicz wysokość raty </DialogTitle>
-          <DialogDescription> Wybierz liczbę płatności, aby obliczyć wysokość pojedyńczej raty.</DialogDescription>
+          <DialogDescription> Wybierz liczbę rat, aby obliczyć wysokość pojedyńczej raty.</DialogDescription>
         </DialogHeader>
 
         <!-- Number of payments selection -->
         <div>
-          <Label class="block mb-3">Liczba płatności</Label>
+          <Label class="block mb-3">Liczba rat</Label>
           <Select v-model="numberOfInstallments">
             <SelectTrigger class="w-full sm:w-1/2">
               <SelectValue placeholder="Wybierz liczbę płatności" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="2"> 2 płatności </SelectItem>
-                <SelectItem value="4"> 4 płatności </SelectItem>
+                <SelectItem value="2"> 2 raty </SelectItem>
+                <SelectItem value="4"> 4 raty </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
