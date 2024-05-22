@@ -122,6 +122,8 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { calculateGrossFromNet, calculateNetFromGross } from "~/utils/currency";
 import { useInsuranceStore } from "~/store";
 import { Loader2 } from "lucide-vue-next";
+import { useToast } from "@/components/ui/toast/use-toast";
+const { toast } = useToast();
 
 /* Define ref for keeping form values */
 const formState = ref<Car>({
@@ -209,12 +211,18 @@ const handleStateFieldChange = () => {
 };
 
 /* Handle form submit */
-const onSubmit = handleSubmit((values) => {
-  useInsuranceStore().toggleLoading(true);
-  console.log("Form submitted with values: ", values);
-
-  setTimeout(() => {
-    useInsuranceStore().toggleLoading(false);
-  }, 2000);
+const onSubmit = handleSubmit(async (values) => {
+  const response = await $fetch("/api/calculate", {
+    method: "post",
+    body: values,
+  })
+    .then((installment) => useInsuranceStore().saveInstallmentValue(installment))
+    .catch(() => {
+      toast({
+        variant: "destructive",
+        title: "Wystąpił błąd",
+        description: "W tym momencie nie można obliczyć składki. Spróbuj ponownie za chwilę.",
+      });
+    });
 });
 </script>
