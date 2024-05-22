@@ -2,7 +2,7 @@ import type { Car } from "~/types/index";
 
 export const useInsuranceStore = defineStore("insurance", () => {
   const isFormSubmitting = ref(false);
-  const isCalculationSuccess = ref(false);
+  const isCalculationSuccessful = ref(false);
   const installmentValue = ref<undefined | number>(undefined);
   const carValues = ref<undefined | Car>();
 
@@ -26,14 +26,14 @@ export const useInsuranceStore = defineStore("insurance", () => {
       useInsuranceStore().toggleLoading(false);
 
       /* Switch success variable to true */
-      isCalculationSuccess.value = true;
+      isCalculationSuccessful.value = true;
     }, 1000);
   }
 
   /* Reset all store values and states */
   function resetStore() {
     isFormSubmitting.value = false;
-    isCalculationSuccess.value = false;
+    isCalculationSuccessful.value = false;
     installmentValue.value = undefined;
     carValues.value = undefined;
   }
@@ -44,7 +44,7 @@ export const useInsuranceStore = defineStore("insurance", () => {
     saveCarValues,
     saveInstallmentValue,
     installmentValue,
-    isCalculationSuccess,
+    isCalculationSuccessful,
     carValues,
     resetStore,
   };

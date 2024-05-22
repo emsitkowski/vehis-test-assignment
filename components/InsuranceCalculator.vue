@@ -4,20 +4,20 @@
       <!-- Card title -->
       <CardTitle class="leading-8">
         {{
-          !useInsuranceStore().isCalculationSuccess
+          !useInsuranceStore().isCalculationSuccessful
             ? "Dane samochodu"
             : "Wyliczenie rocznej składki ubezpieczenia OC/AC dla pojazdu:"
         }}
       </CardTitle>
 
       <!-- Card description -->
-      <CardDescription v-if="!useInsuranceStore().isCalculationSuccess">
+      <CardDescription v-if="!useInsuranceStore().isCalculationSuccessful">
         Wypełnij dane pojazdu, aby obliczyć roczną składkę ubezpieczenia OC/AC, z możliwością wyliczenia kwoty raty.
       </CardDescription>
     </CardHeader>
     <CardContent>
       <!-- Insurance calculator content -->
-      <InsuranceCalculatorForm v-if="!useInsuranceStore().isCalculationSuccess" />
+      <InsuranceCalculatorForm v-if="!useInsuranceStore().isCalculationSuccessful" />
       <InsuranceResult v-else />
     </CardContent>
   </Card>
