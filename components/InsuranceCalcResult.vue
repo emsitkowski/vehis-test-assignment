@@ -17,12 +17,12 @@
       <div class="text-4xl font-bold">{{ useInsuranceStore().installmentValue }} zł</div>
       <div class="flex items-center gap-1 opacity-50">
         <img class="w-4 h-4" src="@/assets/img/ico-info.svg" alt="info" />
-        <span class="text-sm">Istnieje możliwość rozłożenia płatności na raty</span>
+        <span class="text-sm leading-none">Istnieje możliwość rozłożenia płatności na raty</span>
       </div>
     </div>
 
     <!-- Action buttons -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="flex flex-col sm:flex-row gap-4">
       <!-- Installments payment modal -->
       <InsuranceCalcPaymentModal>
         <Button class="w-full"> Oblicz wysokość raty </Button>
