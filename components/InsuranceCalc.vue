@@ -1,6 +1,9 @@
 <template>
   <Card>
     <CardHeader>
+      <!-- Card cover image -->
+      <img class="max-h-40 rounded-lg object-cover mb-4" src="~/assets/img/car.jpg" alt="red car" />
+
       <!-- Card title -->
       <CardTitle class="leading-8">
         {{
