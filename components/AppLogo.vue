@@ -1,5 +1,5 @@
 <template>
   <div>
-    <img class="w-full" src="../assets/img/vehis-logo.svg" alt="" />
+    <img class="max-w-full" src="../assets/img/vehis-logo.svg" alt="" />
   </div>
 </template>
