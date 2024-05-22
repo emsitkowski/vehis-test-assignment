@@ -16,7 +16,7 @@
           <Label class="block mb-3">Liczba rat</Label>
           <Select v-model="numberOfInstallments">
             <SelectTrigger class="w-full sm:w-1/2">
-              <SelectValue placeholder="Wybierz liczbę płatności" />
+              <SelectValue placeholder="Wybierz liczbę rat" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
