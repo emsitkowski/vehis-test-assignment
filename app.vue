@@ -4,9 +4,10 @@
     <AppHeader text="Kalkulator OC/AC" />
 
     <!-- Calculator -->
-    <InsuranceCalculator v-if="!useInsuranceStore().isCalculationSuccess" />
-
-    <div v-else>Installment value: {{ useInsuranceStore().installmentValue }}</div>
+    <div class="w-full max-w-lg mx-auto">
+      <InsuranceCalculator v-if="!useInsuranceStore().isCalculationSuccess" />
+      <InsuranceResult v-else />
+    </div>
   </div>
 
   <Toaster />
