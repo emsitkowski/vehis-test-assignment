@@ -1,5 +1,7 @@
 # vehis-test-assignment
 
+![vehis-test-assignment](https://github.com/emsitkowski/vehis-test-assignment/assets/40630259/b1289737-e33a-4776-bd96-31c629a0dc47)
+
 This project is a Nuxt3 application built with Tailwind CSS and shadcn components for calculating car insurance premium, with possibility to calculate installments.
 
 ## Setup
