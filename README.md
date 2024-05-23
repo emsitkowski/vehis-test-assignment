@@ -1,6 +1,6 @@
-# Nuxt 3 Minimal Starter
+# vehis-test-assignment
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This project is a Nuxt3 application built with Tailwind CSS and shadcn components for calculating car insurance premium, with possibility to calculate installments.
 
 ## Setup
 
