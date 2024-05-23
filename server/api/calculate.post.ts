@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
       } else if (netValue >= 100000 && netValue <= 200000) {
         ratio = 4;
       } else if (netValue >= 200000 && netValue <= 400000) {
-        ratio = 5;
+        ratio = 2;
       }
     }
 
