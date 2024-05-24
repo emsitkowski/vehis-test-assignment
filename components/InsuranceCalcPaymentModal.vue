@@ -58,11 +58,9 @@ const paymentInstallment = computed(() => {
   let computedInstallment = 0;
 
   if (numberOfInstallments.value === "2") {
-    computedInstallment = Number(useInsuranceStore().installmentValue) * 1.02;
+    return (((Number(useInsuranceStore().installmentValue) + 200) * 1.02) / 2).toFixed(2);
   } else if (numberOfInstallments.value === "4") {
-    computedInstallment = Number(useInsuranceStore().installmentValue) * 1.04;
+    return (((Number(useInsuranceStore().installmentValue) + 200) * 1.04) / 4).toFixed(2);
   }
-
-  return Number(computedInstallment + 200).toFixed(2);
 });
 </script>
